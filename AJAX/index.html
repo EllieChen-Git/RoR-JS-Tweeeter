@@ -11,13 +11,24 @@
             body {background-color: #1DA1F2; text-align: center;}
             h1, li {color: white;}
             li {text-align: left;}
+            div {height: 50px; width: 800px; margin: 0 auto;}
         </style>
     </head>
 
     <body>
         <h1>AJAX Challenge</h1>
-        <button id="myBtn">Get All Tweets</button>
-        <ul></ul>
+        <div>
+            <form>
+                <label for="tweet">Create Your tweet</label>
+                <input type="textarea" name="tweet" id="tweet"></input>
+                <input type="submit" value="Create"/>
+            </form>
+        </div>
+
+        <div>
+            <button id="myBtn">Get All Tweets</button>
+            <ul></ul>
+        </div>
 
         <script>
             document.querySelector("#myBtn").addEventListener("click", getTweets);
