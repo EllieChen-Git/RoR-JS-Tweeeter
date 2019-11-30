@@ -197,8 +197,8 @@ __Beast Mode 1.	Add a form to the top of the page which allows the user to creat
 <div>
     <form>
         <label for="tweet">Create Your tweet</label>
-        <input type="textarea" name="tweet" id="tweet"></input>
-        <input type="submit" value="Create"/>
+        <input type="textarea" name="tweet" id="tweet" />
+        <input type="submit" value="Create" />
     </form>
 </div>
 ```
