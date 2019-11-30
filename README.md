@@ -183,3 +183,80 @@ d) Using Fetch to display all the tweets
     }
 </script>
 ```
+---
+
+# [Beast Mode]
+
+Beast Mode is at Beast Mode branch: https://github.com/EllieChen-Git/Tweeeter/tree/Beast_Mode
+--
+__Beast Mode 1.	Add a form to the top of the page which allows the user to create a new tweet. Once created (use AJAX), the tweet should appear at the top of your list of tweets.__
+
+- Add a form
+
+```html
+<div>
+    <form>
+        <label for="tweet">Create Your tweet</label>
+        <input type="textarea" name="tweet" id="tweet"></input>
+        <input type="submit" value="Create"/>
+    </form>
+</div>
+```
+- Create new tweet
+
+app\controllers\tweets_controller.rb
+```ruby
+class TweetsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+end
+```
+
+```html
+<script>
+    document.querySelector("input[type=submit]").addEventListener("click", createTweets);
+        
+    function createTweets(){
+        event.preventDefault();
+
+        let inputValue = document.querySelector("#tweet").value; //grab the value from input field
+        let newTweet = { tweet: { message: inputValue } };
+
+        $.ajax({
+            url: "http://localhost:3000/tweets.json",
+            type: "POST",
+            data: newTweet
+        })
+    };
+</script>
+```
+
+- new tweet appear at the top of list
+```html
+    <script>
+        document.querySelector("#myBtn").addEventListener("click", getTweets);
+        function getTweets(){
+            $.get("http://localhost:3000/tweets.json", (data) => {
+                for(let i = 0; i < data.length; i++){
+                    let newLi = document.createElement("li");
+                    newLi.innerHTML = `Tweet ${i + 1}: ${data[i].message}`;
+                    document.querySelector("ul").prepend(newLi);  //changed from 'append' to 'prepend' will achieve this result
+                }
+            })
+        }
+```
+
+- screenshot
+![Tweets](./docs/beast_mode_1.JPG)
+
+---
+__Beast Mode 2. Add a 'delete' button to each tweet. This should send a DELETE request to your server. Fade out the tweet if it is deleted successfully.__
+
+```
+to do
+```
+---
+__Beast Mode 3. Update your model to include a 'starred' boolean. Users should be able to star/favorite tweets. Add some kind of star icon on the front end.__
+
+```
+to do
+```
