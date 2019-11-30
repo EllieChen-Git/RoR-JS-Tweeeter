@@ -31,17 +31,31 @@
         </div>
 
         <script>
-            document.querySelector("#myBtn").addEventListener("click", getTweets);
-
-            async function getTweets(){
-                const response = await fetch("http://localhost:3000/tweets.json");
-                const myJson = await response.json();
-                for(let i = 0; i < myJson.length; i++){
+        document.querySelector("#myBtn").addEventListener("click", getTweets);
+        function getTweets(){
+            $.get("http://localhost:3000/tweets.json", (data) => {
+                for(let i = 0; i < data.length; i++){
                     let newLi = document.createElement("li");
-                    newLi.innerHTML = `Tweet ${i + 1} - ${myJson[i].message}`;
-                    document.querySelector("ul").appendChild(newLi);      
+                    newLi.innerHTML = `Tweet ${i + 1}: ${data[i].message}`;
+                    document.querySelector("ul").prepend(newLi);  
                 }
-            }
+            })
+        }
+
+        document.querySelector("input[type=submit]").addEventListener("click", createTweets);
+        
+        function createTweets(){
+            event.preventDefault();
+
+            let inputValue = document.querySelector("#tweet").value; //grab the value from input field
+            let newTweet = { tweet: { message: inputValue } };
+
+            $.ajax({
+                url: "http://localhost:3000/tweets.json",
+                type: "POST",
+                data: newTweet
+            })
+        };
         </script>
     </body>
 </html>
