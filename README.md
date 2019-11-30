@@ -25,10 +25,15 @@ $ rails s
 ---
 
 __Challenge 3.	Create a new HTML document, add jQuery.__
-- Directory: https://github.com/EllieChen-Git/in-class-javascript-challenges/tree/master/AJAX
-- Touch index.html
+
+```
+$ mkdir AJAX
+$ cd AJAX
+$ touch index.html
+```
 - Copy the 'jquery.min.js' file into the same folder as 'index.html'.
 - Add script tag inside the head of index.html
+
 ```html
 <head>
     <script src="jquery.min.js" type="text/javascript"></script>
